@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    image: stellar
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8000:8000
+    command: python stellar/manage.py runserver 0.0.0.0:8000
+
+  postgres:
+    image: postgres:14.2
+    environment:
+      POSTGRES_USER: docker_meetup
+      POSTGRES_PASSWORD: docker_meetup
+
+  redis:
+    image: redis:6.2
