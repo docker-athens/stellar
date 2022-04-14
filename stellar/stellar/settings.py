@@ -14,6 +14,8 @@ from pathlib import Path
 
 import sec
 
+sec.load("asd")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -134,3 +136,4 @@ CACHES = {
         'LOCATION': sec.load('APP_REDIS_HOST', 'redis://redis:6379'),
     }
 }
+
