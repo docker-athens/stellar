@@ -3,8 +3,31 @@ version: "3.8"
 services:
   web:
     build: .
+    environment:
+      APP_SECRET_KEY: app_secret_key_for_development
+      APP_ALLOWED_HOSTS: localhost,127.0.0.1
+      APP_DEBUG: "1"
     volumes:
       - .:/usr/src/app
     ports:
       - ${STELLAR_EXTERNAL_PORT:-8000}:8000
     command: python stellar/manage.py runserver 0.0.0.0:8000
+
+  postgres:
+    image: postgres:14.2
+    environment:
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_password
+      POSTGRES_DB: dev_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_EXTERNAL_PORT:-5432}:5432
+
+  redis:
+    image: redis:6.2
+    ports:
+      - ${REDIS_EXTERNAL_PORT:-6379}:6379
+
+volumes:
+  postgres_data:

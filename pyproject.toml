@@ -10,6 +10,7 @@ python = "^3.10"
 Django = "^4.0.4"
 psycopg2-binary = "^2.9.3"
 redis = "^4.2.2"
+sec = "^0.3.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"

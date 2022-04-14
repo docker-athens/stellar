@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+import sec
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jzoh7&^scbjkxal738n+)8n+z@2hds%%*-l6u(3r0cy1q7ko5f'
+SECRET_KEY = sec.load("app/secret_key", "secret_key_used_for_development")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = sec.load("app/debug", "0") == "1"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = sec.load("app/allowed_hosts", "localhost,127.0.0.1").split(",")
 
 
 # Application definition
@@ -75,8 +77,12 @@ WSGI_APPLICATION = 'stellar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': sec.load('app/db_name', 'dev_db'),
+        'USER': sec.load('app/db_user', 'dev_user'),
+        'PASSWORD': sec.load('app/db_password', 'dev_password'),
+        'HOST': sec.load('app/db_host', 'postgres'),
+        'PORT': sec.load('app/db_port', '5432'),
     }
 }
 
@@ -121,3 +127,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': sec.load('APP_REDIS_HOST', 'redis://redis:6379'),
+    }
+}

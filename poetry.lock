@@ -219,6 +219,14 @@ hiredis = ["hiredis (>=1.0.0)"]
 ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==20.0.1)", "requests (>=2.26.0)"]
 
 [[package]]
+name = "sec"
+version = "0.3.0"
+description = "Tiny Python library for secrets"
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[[package]]
 name = "sqlparse"
 version = "0.4.2"
 description = "A non-validating SQL parser."
@@ -261,7 +269,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "9b9b09c307ecc2e8203be0c8197527e0f8990faa28399c636d243fa6273dee04"
+content-hash = "c2d7c5d0d5ec15dc3ffe8dbb08f0865b7c21466ab177332269158f5d8826d51b"
 
 [metadata.files]
 asgiref = [
@@ -435,6 +443,10 @@ pyparsing = [
 redis = [
     {file = "redis-4.2.2-py3-none-any.whl", hash = "sha256:4e95f4ec5f49e636efcf20061a5a9110c20852f607cfca6865c07aaa8a739ee2"},
     {file = "redis-4.2.2.tar.gz", hash = "sha256:0107dc8e98a4f1d1d4aa00100e044287f77121a1e6d2085545c4b7fa94a7a27f"},
+]
+sec = [
+    {file = "sec-0.3.0-py3-none-any.whl", hash = "sha256:7499316825a9491b206edfe322ed7f395eefb1957ed08721c228770e262f0ca5"},
+    {file = "sec-0.3.0.tar.gz", hash = "sha256:00d5ca1f20a8bd7f8527600d4c9cba516319de5af74a5a4cf8cea429176d3595"},
 ]
 sqlparse = [
     {file = "sqlparse-0.4.2-py3-none-any.whl", hash = "sha256:48719e356bb8b42991bdbb1e8b83223757b93789c00910a616a071910ca4a64d"},
